@@ -1,6 +1,7 @@
 package com.company;
 
-import java.util.Random;
+import java.util.*;
+import java.util.stream.IntStream;
 
 
 public class NumberGenerator {
@@ -8,30 +9,18 @@ public class NumberGenerator {
     //https://www.national-lottery.co.uk/games/euromillions/about-euromillions
     // regular nums limit is 50 - lucky star limit is 12
 
+    private final int standardNums = 5;
+    private final int standardMax = 50;
+    private final int luckyStarNums = 2;
+    private final int luckyStarMax = 12;
+
     Random random = new Random();
 
     public int[] generateNums() {
+        int[] standardNumsGenerated = random.ints(1, standardMax + 1).distinct().limit(standardNums).sorted().toArray();
+        int[] luckyStarNumsGenerated = random.ints(1, luckyStarMax + 1).distinct().limit(luckyStarNums).sorted().toArray();
 
-        int[] numberSelection = new int[7];
+        return IntStream.concat(Arrays.stream(standardNumsGenerated), Arrays.stream(luckyStarNumsGenerated)).toArray();
 
-        int standardNums = 5;
-        int luckyStarNums = 2;
-        for (int i = 0; i < (standardNums + luckyStarNums); i++) {
-            int previousSelection = 0;
-            int selection;
-            int standardMax = 50;
-            if (i < standardNums) {
-                selection = random.nextInt(1, standardMax + 1);
-            }
-            else {
-                int luckyStarMax = 12;
-                selection = random.nextInt(1, luckyStarMax + 1);
-            }
-            while(selection == previousSelection){
-                selection = random.nextInt(1, standardMax + 1);
-            }
-            numberSelection[i] = selection;
-        }
-        return numberSelection;
     }
 }
