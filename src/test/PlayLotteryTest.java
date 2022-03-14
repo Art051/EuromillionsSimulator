@@ -66,4 +66,18 @@ class PlayLotteryTest {
         Assertions.assertEquals(3.7, playLottery.calculatePrize(winningNumbers, match2And1));
         Assertions.assertEquals(3, playLottery.calculatePrize(winningNumbers, match2));
     }
+
+
+    @Test
+    void playNTimes() {
+        int plays = 10;
+        playLottery.playNTimes(10);
+
+        long result = playLottery.getCountPlays();
+        long expected = 10;
+    }
+
+    @Test
+    void playToTargetValue() {
+    }
 }
