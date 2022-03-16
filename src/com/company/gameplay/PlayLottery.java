@@ -53,9 +53,11 @@ public class PlayLottery {
     }
 
     public double calculatePrize(int[] winNums, int[] current){
-        // Jackpot taken from https://www.national-lottery.co.uk/results/euromillions/draw-history/prize-breakdown/1507
-        //Table of winning values taken from that page - the percentages etc. obviously would vary from game to game based on the actual amount of tickets with matching numbers,
-        // but for the sake of this I've done basic calculations to calculate the spread
+
+        /* Jackpot taken from https://www.national-lottery.co.uk/results/euromillions/draw-history/prize-breakdown/1507
+            Table of winning values taken from that page - the percentages etc. obviously would vary from game to game based on the actual amount of tickets with matching numbers,
+            but for the sake of this I've done basic calculations to calculate the spread
+        */
 
         double prize = 0;
         int[] matches = {0, 0};
