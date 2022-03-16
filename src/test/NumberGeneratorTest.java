@@ -1,10 +1,8 @@
 package test;
 
-import com.company.NumberGenerator;
+import com.company.generators.NumberGenerator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.RepeatedTest;
-
-import java.util.Arrays;
 
 class NumberGeneratorTest {
 
@@ -18,19 +16,20 @@ class NumberGeneratorTest {
 
     @RepeatedTest(1000)
     void testNumbersWithinLimits() {
-        generatedNums = numberGenerator.generateNums();
-                for(int i = 0; i < 5; i++) {
+        for(int i = 0; i < 5; i++) {
+            generatedNums = numberGenerator.generateNums();
             Assertions.assertTrue(generatedNums[i] >= 1 && generatedNums[i] <= 50);
         }
         for(int i = 5; i < 7; i++) {
+            generatedNums = numberGenerator.generateNums();
             Assertions.assertTrue(generatedNums[i] >= 1 && generatedNums[i] <= 12);
         }
     }
 
     @RepeatedTest(1000)
     void testOrderRegulars() {
-        generatedNums = numberGenerator.generateNums();
         for(int i = 0; i < 4; i++) {
+            generatedNums = numberGenerator.generateNums();
             Assertions.assertTrue(generatedNums[i] < generatedNums[(i+1)]);
         }
     }
@@ -38,6 +37,6 @@ class NumberGeneratorTest {
     @RepeatedTest(1000)
     void testOrderLuckyStars() {
         generatedNums = numberGenerator.generateNums();
-            Assertions.assertTrue(generatedNums[5] < generatedNums[6]);
+        Assertions.assertTrue(generatedNums[5] < generatedNums[6]);
     }
 }

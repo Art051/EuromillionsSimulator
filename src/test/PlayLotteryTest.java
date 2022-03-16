@@ -1,6 +1,6 @@
 package test;
 
-import com.company.PlayLottery;
+import com.company.gameplay.PlayLottery;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -33,7 +33,7 @@ class PlayLotteryTest {
 
 
     @Test
-    void checkForWin() {
+    void checkForWinTest() {
         Assertions.assertTrue(playLottery.checkWin(winningNumbers, match5And2));
         Assertions.assertFalse(playLottery.checkWin(winningNumbers, match5And1));
         Assertions.assertFalse(playLottery.checkWin(winningNumbers, match5));
@@ -50,7 +50,40 @@ class PlayLotteryTest {
     }
 
     @Test
-    void calculatePrize() {
+    void playOnceTest() {
+        int plays = 1;
+        playLottery.playNTimes(plays);
+
+        long result = playLottery.getCountPlays();
+        long expected = 1;
+
+        Assertions.assertEquals(expected,result);
+    }
+
+    @Test
+    void playNTimesTest() {
+        int plays = 10;
+        playLottery.playNTimes(plays);
+
+        long result = playLottery.getCountPlays();
+        long expected = 10;
+
+        Assertions.assertEquals(expected,result);
+    }
+
+    @Test
+    void playToTargetValueTest() {
+        double targetWinnings = 1000.50;
+        playLottery.playToTargetValue(targetWinnings);
+
+        double result = playLottery.getTotalWinnings();
+        double expected = 1000.50;
+
+        Assertions.assertTrue(result >= expected);
+    }
+
+    @Test
+    void calculatePrizeTest() {
 
         Assertions.assertEquals(55075675, playLottery.calculatePrize(winningNumbers, match5And2));
         Assertions.assertEquals(80878, playLottery.calculatePrize(winningNumbers, match5And1));
@@ -65,19 +98,5 @@ class PlayLotteryTest {
         Assertions.assertEquals(3.8, playLottery.calculatePrize(winningNumbers, match1And2));
         Assertions.assertEquals(3.7, playLottery.calculatePrize(winningNumbers, match2And1));
         Assertions.assertEquals(3, playLottery.calculatePrize(winningNumbers, match2));
-    }
-
-
-    @Test
-    void playNTimes() {
-        int plays = 10;
-        playLottery.playNTimes(10);
-
-        long result = playLottery.getCountPlays();
-        long expected = 10;
-    }
-
-    @Test
-    void playToTargetValue() {
     }
 }

@@ -1,4 +1,7 @@
-package com.company;
+package com.company.gameplay;
+
+import com.company.generators.Ticket;
+import com.company.generators.WinningNumbers;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -15,6 +18,7 @@ public class PlayLottery {
     private double totalSpend = 0;
     private double totalWinnings = 0;
     private double ticketPrice = 2.5;
+    private final DecimalFormat decimalFormat = new DecimalFormat("#########.##");
 
     private List<int[]> winningNumsList = new ArrayList<>();
     private List<int[]> ticketsList = new ArrayList<>();
@@ -148,7 +152,7 @@ public class PlayLottery {
     }
 
     public double getTotalWinnings() {
-        return totalWinnings;
+        return Double.parseDouble(decimalFormat.format(totalWinnings));
     }
 
     public void setTotalWinnings(double totalWinnings) {
@@ -195,4 +199,3 @@ public class PlayLottery {
         this.ticketNums = ticketNums;
     }
 }
-
